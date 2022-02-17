@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER } from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER } from './types';
 
 export function loginUser(dataTosubmit) {
   const request = axios
@@ -27,3 +27,15 @@ export function RegisterUser(dataTosubmit) {
     }
 }
 
+export function auth(dataTosubmit) {
+  const request = axios
+    .get("/api/users/auth")
+    .then(response => response.data )
+
+
+    //리듀서로 보냄
+    return {
+        type: AUTH_USER,
+        payload: request
+    }
+}
